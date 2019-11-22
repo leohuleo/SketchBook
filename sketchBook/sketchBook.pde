@@ -5,10 +5,19 @@ final int intro = 0, game = 1, gameOver = 2;
 
 int mode = 0;
 
+Note note;
+Line line;
+ArrayList<GameObject> noteSeries;
 PImage noteImage;
 void setup(){
   size(500,800);
+  line = new Line();
+  note = new Note(d);
+  noteSeries = new ArrayList();
+  noteSeries.add(line);
+  noteSeries.add(note);
   noteImage = loadImage("notes.png");
+
 }
 
 void draw(){

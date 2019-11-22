@@ -1,7 +1,10 @@
 void game(){
   background(0);
-  Note note = new Note(d);
-  if(note.currentY < 500){
-    note.move();
+  int i = 0;
+  while(i<noteSeries.size()){
+    GameObject currentNote = noteSeries.get(i);
+    currentNote.show();
+    currentNote.act();
+    i++;
   }
 }
