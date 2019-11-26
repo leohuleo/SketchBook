@@ -1,19 +1,20 @@
-class effect extends GameObject{
-  float time;
-  
-  effect(int x){
-    fill(255);
-    rect(x,-50,50,1000);
-    time = 255;
-  }
-  void show(){
-    if(time>0){
-      time-=0.1;
-      fill(255,time);
-    }else{
-      lives = 0;
+class Effect extends GameObject{
+    int time;
+    Effect(int row){
+       x = row * 100 - 25;
+       lives = 1;
+       time = 255;
     }
-  }
-  
-  void act(){};
+    
+    void show(){
+       if( time > 0){
+       fill(255,time);
+       noStroke();
+       rect(x,0,50,1000);
+       time-=5;  
+       }else {
+         lives = 0;
+       }
+    };
+    void act(){};
 }

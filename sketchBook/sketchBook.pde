@@ -13,7 +13,6 @@ int[][] beatMap;
 BufferedReader reader;
 String lines;
 
-Note note;
 Line line;
 ArrayList<GameObject> noteSeries;
 PImage noteImage;
@@ -77,6 +76,11 @@ void keyReleased(){
 void mouseReleased(){
   if(mode == gameOver){
     mode = intro;
+    noteSeries.clear();
+    noteSeries.add(line);
+    OnComingNote = 0;
+    score = 0;
+    timeElapsed = 0;
   }else{
     mode++;
   }

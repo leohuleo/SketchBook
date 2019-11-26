@@ -1,11 +1,13 @@
 class Note extends GameObject{
   int row;
+  int h;
   Note(int r){
     row = r;
     currentY = 0;
     speed = 5;
     x =row * 100 - 25;
     lives = 1;
+    
   }
   void show(){
     currentY += speed;
@@ -40,9 +42,12 @@ class Note extends GameObject{
       qte = true;
       break;
     }
-    if(Math.abs(currentY - line.currentY) < 7.5 && qte){
+    if(Math.abs(currentY - line.currentY) < 15 && qte){
       lives = 0;
       score++;
+      noteSeries.add(new Effect(row));
+    }else if((Math.abs(currentY - line.currentY) > 15 && Math.abs(currentY - line.currentY) < 60) && qte){
+      lives = 0;
     }
      i++;
     }
