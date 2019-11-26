@@ -1,11 +1,11 @@
 class Note extends GameObject{
-  int spawnTime;
   int row;
   Note(int r){
     row = r;
     currentY = 0;
     speed = 5;
-    x = 50 + row * 100;
+    x =row * 100 - 25;
+    lives = 1;
   }
   void show(){
     currentY += speed;
@@ -14,6 +14,10 @@ class Note extends GameObject{
     image(noteImage,0,0);
     noteImage.resize(50,15);
     popMatrix();
+    if(currentY >850){
+      lives = 0;
+      mode = gameOver;
+    }
   }
   
   void act(){
@@ -36,15 +40,11 @@ class Note extends GameObject{
       qte = true;
       break;
     }
-    while(i<noteSeries.size()){
-     GameObject currentObject = noteSeries.get(i);
-     if(currentObject instanceof Note){
-       if((Math.abs(line.currentY - currentY) < 30) && qte){
-         noteSeries.remove(i);
-         noteSeries.add(new effect(row * 100));
-       }
-     }
+    if(Math.abs(currentY - line.currentY) < 7.5 && qte){
+      lives = 0;
+      score++;
+    }
      i++;
     }
-  }
+  
 }

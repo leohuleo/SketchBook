@@ -4,6 +4,14 @@ final int d = 1,f = 2,j = 3,k = 4;
 final int intro = 0, game = 1, gameOver = 2;
 
 int mode = 0;
+int timeElapsed = 0;
+int OnComingNote;
+int score;
+
+int[][] beatMap;
+
+BufferedReader reader;
+String lines;
 
 Note note;
 Line line;
@@ -11,11 +19,33 @@ ArrayList<GameObject> noteSeries;
 PImage noteImage;
 void setup(){
   size(500,800);
+  String raw = "";
+  reader = createReader("sample.txt");
+  while(true){
+  try{
+    lines = reader.readLine();
+  } catch(IOException e){
+    lines = null;
+  }
+  if(lines == null){
+    break;
+  }else{
+      raw = raw + lines;
+    }
+  }
+  int k = 0;
+  OnComingNote = 0;
+  String[] tmp = raw.split(" ");
+  beatMap = new int[tmp.length/2][2];
+  for(int i = 0; i< beatMap.length; i++){
+    for(int j = 0; j < beatMap[0].length;j++){
+      beatMap[i][j] = Integer.parseInt(tmp[k]);
+      k++;
+    }
+  }
   line = new Line();
-  note = new Note(d);
   noteSeries = new ArrayList();
   noteSeries.add(line);
-  noteSeries.add(note);
   noteImage = loadImage("notes.png");
 
 }

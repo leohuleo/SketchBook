@@ -3,13 +3,17 @@ class effect extends GameObject{
   
   effect(int x){
     fill(255);
-    rect(x,-50,100,1000);
-    time = 0;
+    rect(x,-50,50,1000);
+    time = 255;
   }
   void show(){
-    fill(255,100 - time);
-    if(time < 100)time += 0.5;
-    
+    if(time>0){
+      time-=0.1;
+      fill(255,time);
+    }else{
+      lives = 0;
+    }
   }
-
+  
+  void act(){};
 }
